@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAutorLivrosTable extends Migration
+class CreateAutorLivroTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAutorLivrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('autor_livros', function (Blueprint $table) {
+        Schema::create('autor_livro', function (Blueprint $table) {
             $table->unsignedBigInteger('autor_id');
             $table->unsignedBigInteger('livro_id');
 

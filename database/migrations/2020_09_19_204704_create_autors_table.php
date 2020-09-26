@@ -17,6 +17,7 @@ class CreateAutorsTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email');
+            $table->timestamps();
             
         });
     }
