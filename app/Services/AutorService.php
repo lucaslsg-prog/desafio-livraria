@@ -38,4 +38,17 @@ class AutorService
             return null;
         }
     }
+
+    public static function listaAutores($request){
+
+        $termoPesquisa = trim($request->searchTerm);
+
+        if (empty($termoPesquisa)){
+            return Autor::select('id', 'nome as text')->get();
+        }
+
+        return Autor::select('id','nome as text')
+                    ->where('nome','like', '%' . $termoPesquisa . '%')
+                    ->get();
+    }
 } 

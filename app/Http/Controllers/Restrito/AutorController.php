@@ -62,4 +62,8 @@ class AutorController extends Controller
 
         return response('Erro ao apagar', 400);
     }
+    public function listaAutores(Request $request){
+
+        return AutorService::listaAutores($request);
+    }
 }
