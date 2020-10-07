@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Livro;
+use App\Services\UploadService;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -21,14 +22,15 @@ class LivroDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->addColumn('capa', function ($l) {
+                $capa = UploadService::getUrlArquivo($l->capa);
+                return view('restrito.livro.capa_datatable', compact('capa'));
+            })
             ->addColumn('action', function ($l) {
                 return view('restrito.datatable.acoes_padrao', [
                     'editar' => route('restrito.livros.edit', $l),
                     'excluir' => route('restrito.livros.destroy', $l)
                 ]);
-            })
-            ->addColumn('total_autores', function ($l) {
-                return $l->livros()->count();
             });
     }
 
@@ -38,9 +40,9 @@ class LivroDataTable extends DataTable
      * @param \App\LivroDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Livro $model)
+    public function query(Livro $livro)
     {
-        return $model->newQuery();
+        return $livro->newQuery();
     }
 
     /**
@@ -51,7 +53,7 @@ class LivroDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('livrodatatable-table')
+                    ->setTableId('livro-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -78,13 +80,12 @@ class LivroDataTable extends DataTable
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
-                  ->title('Ações'),
+                  ->addClass('text-center'),
+            Column::make('capa'),
             Column::make('nome'),
             Column::make('paginas'),
-            Column::make('capa'),
             Column::make('descricao'),
-            Column::make('valor'),
-            Column::computed('total_autores')->title('Total de Autores')
+            Column::make('valor')
         ];
     }
 

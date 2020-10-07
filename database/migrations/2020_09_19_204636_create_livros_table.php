@@ -20,7 +20,7 @@ class CreateLivrosTable extends Migration
             $table->text('capa');
             $table->text('descricao')->nullable();
             $table->decimal('valor', 10, 2);
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 
