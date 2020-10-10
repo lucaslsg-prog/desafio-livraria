@@ -1,4 +1,4 @@
 
 <a href= "{{ $capa }}" data-lightbox= "image-{{ time() }}" data-title= "{{ $l->nome }}">
-    <img width="80px" src="{{ $capa }}">
+    <img width="70px" src="{{ $capa }}">
 </a>
