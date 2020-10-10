@@ -382,13 +382,30 @@ return [
             ],
             
         ],
+        'LightBox' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/vendor/lightbox/css/lightbox.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/vendor/lightbox/js/lightbox.js',
+                ]
+            ],
+            
+        ],
+
         'Axios' => [
             'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//unpkg.com/axios/dist/axios.min.js',
+                    'location' => '//unpkg.com/axios/dist/axios.js',
                 ],
             ],
         ],
